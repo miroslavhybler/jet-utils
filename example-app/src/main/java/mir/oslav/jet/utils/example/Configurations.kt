@@ -1,7 +1,9 @@
 package mir.oslav.jet.utils.example
 
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -28,12 +30,17 @@ fun Configurations() {
 
     val configuration = LocalConfiguration.current
 
+    Spacer(modifier = Modifier.height(height = 24.dp))
+
     Text(
         text = "Screen size",
-        style = MaterialTheme.typography.titleSmall,
+        style = MaterialTheme.typography.titleLarge,
         color = MaterialTheme.colorScheme.onBackground,
         modifier = Modifier.fillMaxWidth(),
     )
+
+    Spacer(modifier = Modifier.height(height = 6.dp))
+
 
     ConfigurationRow(title = "Width Dp", value = "${configuration.screenWidthDp}")
     ConfigurationRow(title = "Height Dp", value = "${configuration.screenHeightDp}")

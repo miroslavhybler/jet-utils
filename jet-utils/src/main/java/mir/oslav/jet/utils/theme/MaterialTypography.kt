@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
  * created on 01.09.2023
  */
 @Composable
-fun MaterialTypography() {
+public fun MaterialTypography() {
     Column(modifier = Modifier.fillMaxWidth()) {
 
         Text(

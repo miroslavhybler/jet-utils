@@ -64,6 +64,7 @@ public val Configuration.screenWidthPx: Float
         return density.dpToPx(dp = this.screenWidthDp.dp)
     }
 
+
 /**
  * @since 1.0.0
  * @author Miroslav Hýbler <br>

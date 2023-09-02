@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
  * created on 26.08.2023
  */
 @Composable
-fun MaterialColors(
+public fun MaterialColors(
     modifier: Modifier = Modifier
 ) {
     val colorScheme = MaterialTheme.colorScheme

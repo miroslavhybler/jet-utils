@@ -40,8 +40,19 @@ public fun Density.dpToPx(dp: Dp): Float = dp.toPx()
  * created on 01.09.2023
  */
 @Composable
-public fun Density.statusBarxPadding(): Dp {
-    return WindowInsets.statusBars.getTop(density = this).toDp()
+public fun Density.statusBarsPadding(): Dp {
+    return statusBarsPaddingPx().toDp()
+}
+
+
+/**
+ * @since 1.0.0
+ * @author Miroslav Hýbler <br>
+ * created on 02.09.2023
+ */
+@Composable
+public fun Density.statusBarsPaddingPx(): Int {
+    return WindowInsets.statusBars.getTop(density = this)
 }
 
 
@@ -52,7 +63,18 @@ public fun Density.statusBarxPadding(): Dp {
  */
 @Composable
 public fun Density.navigationBarsPadding(): Dp {
-    return WindowInsets.navigationBars.getBottom(density = this).toDp()
+    return navigationBarsPaddingPx().toDp()
+}
+
+
+/**
+ * @since 1.0.0
+ * @author Miroslav Hýbler <br>
+ * created on 02.09.2023
+ */
+@Composable
+public fun Density.navigationBarsPaddingPx(): Int {
+    return WindowInsets.navigationBars.getBottom(density = this)
 }
 
 
@@ -63,6 +85,16 @@ public fun Density.navigationBarsPadding(): Dp {
  */
 @Composable
 public fun Density.imePadding(): Dp {
-    return WindowInsets.ime.getBottom(density = this).toDp()
+    return imePaddingPx().toDp()
 }
 
+
+/**
+ * @since 1.0.0
+ * @author Miroslav Hýbler <br>
+ * created on 01.09.2023
+ */
+@Composable
+public fun Density.imePaddingPx(): Int {
+    return WindowInsets.ime.getBottom(density = this)
+}

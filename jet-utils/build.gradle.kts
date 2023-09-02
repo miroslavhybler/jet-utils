@@ -102,7 +102,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/miroslavhybler/jet-utils/")
+            url = uri(path = "https://maven.pkg.github.com/miroslavhybler/jet-utils/")
 
             val githubProperties = Properties()
             githubProperties.load(FileInputStream(rootProject.file("github.properties")))
