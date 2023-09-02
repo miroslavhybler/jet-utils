@@ -88,9 +88,9 @@ dependencies {
 
 publishing {
     publications {
-        register<MavenPublication>(name = "jet-annotations-publish") {
+        register<MavenPublication>(name = "jet-utils-publish") {
             groupId = "mir.oslav.jet"
-            artifactId = "annotations"
+            artifactId = "utils"
             version = "1.0.0"
 
             afterEvaluate {
