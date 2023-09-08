@@ -14,6 +14,7 @@ plugins {
 }
 
 android {
+    group = "mir.oslav.jet"
     namespace = "mir.oslav.jet.utils"
     compileSdk = 34
 
@@ -57,6 +58,12 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+    publishing {
+        singleVariant(variantName = "release") {
+            withSourcesJar()
+            withJavadocJar()
         }
     }
 }

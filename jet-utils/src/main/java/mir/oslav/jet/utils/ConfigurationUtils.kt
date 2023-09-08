@@ -9,6 +9,8 @@ import androidx.compose.ui.unit.dp
 
 
 /**
+ * Returns true when the screen is at least approximately 720x960 dp units, meaning the device is
+ * basically a tablet, false otherwise.
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 17.03.2023
@@ -19,6 +21,7 @@ public val Configuration.isExtraLargeScreen: Boolean
     )
 
 /**
+ * Returns true when the screen is at least approximately 480x640 dp units, false otherwise.
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 17.03.2023
@@ -30,6 +33,7 @@ public val Configuration.isLargeScreen: Boolean
 
 
 /**
+ * Returns true when the screen is at least approximately 320x470 dp units, false otherwise.
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 17.03.2023
@@ -41,6 +45,7 @@ public val Configuration.isNormalScreen: Boolean
 
 
 /**
+ * Returns true when the screen is at least approximately 320x426 dp units, false otherwise.
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 17.03.2023
@@ -52,6 +57,7 @@ public val Configuration.isSmallScreen: Boolean
 
 
 /**
+ * Returns screen width in pixels
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 17.03.2023
@@ -66,6 +72,7 @@ public val Configuration.screenWidthPx: Float
 
 
 /**
+ * Returns screen height in pixels
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 17.03.2023

@@ -130,7 +130,7 @@ private fun ColorRow(
 
 
 @Composable
-@Preview
+@Preview(showBackground = true)
 private fun PalletePreview() {
 
     MaterialColors()

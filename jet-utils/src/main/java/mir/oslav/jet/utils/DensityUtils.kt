@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package mir.oslav.jet.utils
 
 import androidx.compose.foundation.layout.WindowInsets
@@ -11,6 +13,8 @@ import androidx.compose.ui.unit.Dp
 
 
 /**
+ * @param px Input value in pixels
+ * @return Value of [px] in dp
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 01.09.2023
@@ -19,6 +23,8 @@ public fun Density.pxToDp(px: Float): Dp = px.toDp()
 
 
 /**
+ * @param px Input value in pixels
+ * @return Value of [px] in dp
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 01.09.2023
@@ -27,6 +33,8 @@ public fun Density.pxToDp(px: Int): Dp = px.toDp()
 
 
 /**
+ * @param dp Input value in dp units
+ * @return Value of [dp] in pixels
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 01.09.2023
@@ -35,6 +43,7 @@ public fun Density.dpToPx(dp: Dp): Float = dp.toPx()
 
 
 /**
+ * @return Height of status bar id dp units.
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 01.09.2023
@@ -46,6 +55,7 @@ public fun Density.statusBarsPadding(): Dp {
 
 
 /**
+ * @return Height of status bar in pixels.
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 02.09.2023
@@ -57,6 +67,7 @@ public fun Density.statusBarsPaddingPx(): Int {
 
 
 /**
+ * @return Navigation bar height in dp units
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 01.09.2023
@@ -68,6 +79,7 @@ public fun Density.navigationBarsPadding(): Dp {
 
 
 /**
+ * @return Navigation bar height in pixels
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 02.09.2023
@@ -79,6 +91,7 @@ public fun Density.navigationBarsPaddingPx(): Int {
 
 
 /**
+ * @return Ime height (incuding navigation bar too) in dp units
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 01.09.2023
@@ -90,6 +103,7 @@ public fun Density.imePadding(): Dp {
 
 
 /**
+ * @return Ime height (incuding navigation bar too) in pixels
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 01.09.2023

@@ -89,7 +89,7 @@ public fun MaterialTypography() {
 }
 
 @Composable
-@Preview
+@Preview(showBackground = true)
 private fun MaterialTypographyPreview() {
     MaterialTypography()
 }
