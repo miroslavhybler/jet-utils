@@ -71,7 +71,7 @@ android {
 dependencies {
 
     /** AndroidX */
-    implementation("androidx.core:core-ktx:1.10.1")
+    implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
 
 
@@ -98,7 +98,7 @@ publishing {
         register<MavenPublication>(name = "jet-utils-publish") {
             groupId = "mir.oslav.jet"
             artifactId = "utils"
-            version = "1.0.0"
+            version = "1.0.1"
 
             afterEvaluate {
                 from(components["release"])
