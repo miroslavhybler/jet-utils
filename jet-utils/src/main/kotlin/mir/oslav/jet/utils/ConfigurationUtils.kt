@@ -87,6 +87,22 @@ public val Configuration.screenHeightPx: Float
 
 
 /**
+ * True when actual screen orientation is portrait (vertical).
+ * @since 1.0.2
+ */
+public val Configuration.isPortrait: Boolean
+    get() = this.orientation == Configuration.ORIENTATION_PORTRAIT
+
+
+/**
+ * True when actual screen orientation is landscape (horizontal).
+ * @since 1.0.2
+ */
+public val Configuration.isLandScape: Boolean
+    get() = this.orientation == Configuration.ORIENTATION_LANDSCAPE
+
+
+/**
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 01.09.2023

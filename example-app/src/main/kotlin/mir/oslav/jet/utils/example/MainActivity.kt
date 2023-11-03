@@ -10,12 +10,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import mir.oslav.jet.utils.example.theme.JetUtilsTheme
 import mir.oslav.jet.utils.theme.MaterialColors
 import mir.oslav.jet.utils.theme.MaterialTypography
 
@@ -42,7 +38,6 @@ class MainActivity : ComponentActivity() {
                         MaterialTypography()
 
                         MaterialColors()
-
 
                         Configurations()
                     }

@@ -1,9 +1,5 @@
-import kotlin.collections.mutableMapOf
-import org.jetbrains.dokka.DokkaConfiguration.Visibility
 import java.io.FileInputStream
-import kotlin.collections.mutableListOf
 import java.util.Properties
-import kotlin.collections.listOf
 
 
 plugins {
@@ -98,7 +94,7 @@ publishing {
         register<MavenPublication>(name = "jet-utils-publish") {
             groupId = "mir.oslav.jet"
             artifactId = "utils"
-            version = "1.0.1"
+            version = "1.0.2"
 
             afterEvaluate {
                 from(components["release"])

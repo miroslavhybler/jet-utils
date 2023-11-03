@@ -36,9 +36,12 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    kotlin {
+        jvmToolchain(jdkVersion = 8)
+    }
     buildFeatures {
         compose = true
-        buildConfig= true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.3"
@@ -53,6 +56,7 @@ android {
 dependencies {
 
     implementation(project(":jet-utils"))
+
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
