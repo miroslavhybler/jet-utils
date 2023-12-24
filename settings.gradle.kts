@@ -1,8 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-include(":jet-utils")
-
-
 pluginManagement {
     repositories {
         google()
@@ -19,5 +16,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Jet Utils"
+include(":jet-utils")
 include(":example-app")
  
