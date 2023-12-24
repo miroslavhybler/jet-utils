@@ -88,33 +88,22 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 }
 
-publishing {
-    publications {
-        register<MavenPublication>(name = "jet-utils-publish") {
-            groupId = "mir.oslav.jet"
-            artifactId = "utils"
-            version = "1.0.2"
-
-            afterEvaluate {
-                from(components["release"])
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from (components.getByName("release"))
+                groupId = "mir.oslav.jet"
+                artifactId = "utils"
+                version = "1.0.3"
+                pom {
+                    description.set("Jitpack.io deploy")
+                }
             }
+
         }
-    }
-
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri(path = "https://maven.pkg.github.com/miroslavhybler/jet-utils/")
-
-            val githubProperties = Properties()
-            githubProperties.load(FileInputStream(rootProject.file("github.properties")))
-            val username = githubProperties["github.username"].toString()
-            val token = githubProperties["github.token"].toString()
-
-            credentials {
-                this.username = username
-                this.password = token
-            }
+        repositories {
+            mavenLocal()
         }
     }
 }
