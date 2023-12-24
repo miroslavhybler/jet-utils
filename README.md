@@ -17,7 +17,7 @@ dependencyResolutionManagement {
 **Application's module build.gradle.kts**
 ```kotlin
 dependencies {
-    implementation("com.github.miroslavhybler:jet-utils:1.0.3")
+    implementation("com.github.miroslavhybler:jet-utils:1.0.4")
 }
 ```
 
