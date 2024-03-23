@@ -1,4 +1,4 @@
-package mir.oslav.jet.utils.example
+package com.jet.utils.example
 
 import android.app.Activity
 import android.os.Build

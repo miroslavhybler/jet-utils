@@ -1,4 +1,4 @@
-package mir.oslav.jet.utils
+package com.jet.utils
 
 import android.content.res.Configuration
 import androidx.compose.runtime.Composable

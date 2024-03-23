@@ -1,4 +1,4 @@
-package mir.oslav.jet.utils
+package com.jet.utils
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Assert.assertEquals

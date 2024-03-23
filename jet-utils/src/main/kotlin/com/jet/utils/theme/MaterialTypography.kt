@@ -1,4 +1,4 @@
-package mir.oslav.jet.utils.theme
+package com.jet.utils.theme
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth

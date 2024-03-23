@@ -4,15 +4,15 @@ plugins {
 }
 
 android {
-    namespace = "mir.oslav.jet.utils.example"
+    namespace = "com.jet.utils.example"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "mir.oslav.jet.utils.example"
+        applicationId = "com.jet.utils.example"
         minSdk = 21
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0.1"
+        versionName = "1.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -44,7 +44,7 @@ android {
         buildConfig = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.7"
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
     packaging {
         resources {
@@ -58,9 +58,9 @@ dependencies {
     implementation(project(":jet-utils"))
 
     implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    implementation(platform("androidx.compose:compose-bom:2024.02.02"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")

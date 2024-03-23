@@ -1,4 +1,4 @@
-package mir.oslav.jet.utils.example
+package com.jet.utils.example
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,12 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import mir.oslav.jet.utils.isExtraLargeScreen
-import mir.oslav.jet.utils.isLargeScreen
-import mir.oslav.jet.utils.isNormalScreen
-import mir.oslav.jet.utils.isSmallScreen
-import mir.oslav.jet.utils.screenHeightPx
-import mir.oslav.jet.utils.screenWidthPx
+import com.jet.utils.isExtraLargeScreen
+import com.jet.utils.isLargeScreen
+import com.jet.utils.isNormalScreen
+import com.jet.utils.isSmallScreen
+import com.jet.utils.screenHeightPx
+import com.jet.utils.screenWidthPx
 
 
 /**

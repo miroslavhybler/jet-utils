@@ -1,4 +1,4 @@
-package mir.oslav.jet.utils
+package com.jet.utils
 
 import androidx.annotation.ColorInt
 import androidx.core.graphics.ColorUtils

@@ -1,4 +1,4 @@
-package mir.oslav.jet.utils.example
+package com.jet.utils.example
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,8 +12,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import mir.oslav.jet.utils.theme.MaterialColors
-import mir.oslav.jet.utils.theme.MaterialTypography
+import com.jet.utils.theme.MaterialColors
+import com.jet.utils.theme.MaterialTypography
 
 
 /**

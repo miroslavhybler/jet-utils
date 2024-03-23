@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package mir.oslav.jet.utils
+package com.jet.utils
 
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.ime
