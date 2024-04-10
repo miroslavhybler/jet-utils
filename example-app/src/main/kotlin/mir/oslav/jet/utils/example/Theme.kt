@@ -1,4 +1,4 @@
-package com.jet.utils.example
+package mir.oslav.jet.utils.example
 
 import android.app.Activity
 import android.os.Build
@@ -31,15 +31,6 @@ fun JetUtilsTheme(
         darkTheme -> darkColorScheme()
         else -> lightColorScheme()
     }
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
-        }
-    }
-
     MaterialTheme(
         colorScheme = colorScheme,
         content = content

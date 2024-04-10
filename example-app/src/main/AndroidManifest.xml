@@ -13,10 +13,16 @@
         android:theme="@style/Theme.JetUtils"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".MainActivity2"
+            android:exported="false"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.JetUtils" />
+        <activity
+            android:name="mir.oslav.jet.utils.example.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.JetUtils">
+            android:theme="@style/Theme.JetUtils"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

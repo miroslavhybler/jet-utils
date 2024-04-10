@@ -1,4 +1,4 @@
-package com.jet.utils.example
+package mir.oslav.jet.utils.example
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
