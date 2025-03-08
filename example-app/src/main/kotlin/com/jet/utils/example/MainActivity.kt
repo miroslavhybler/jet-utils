@@ -1,5 +1,6 @@
-package mir.oslav.jet.utils.example
+package com.jet.utils.example
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
@@ -17,15 +18,13 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import com.jet.utils.SafePaddingsPreview
 import com.jet.utils.plus
-import com.jet.utils.theme.MaterialColors
+import com.jet.utils.theme.MaterialColorsPreview
 import com.jet.utils.theme.MaterialTypography
 
 
@@ -38,8 +37,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         val systemBarsStyle = SystemBarStyle.auto(
-            android.graphics.Color.TRANSPARENT,
-            android.graphics.Color.TRANSPARENT
+            Color.TRANSPARENT,
+            Color.TRANSPARENT
         )
         enableEdgeToEdge(statusBarStyle = systemBarsStyle, navigationBarStyle = systemBarsStyle)
         setContent {
@@ -66,9 +65,9 @@ class MainActivity : ComponentActivity() {
                         ) {
                             MaterialTypography()
 
-                            MaterialColors()
+                            MaterialColorsPreview()
 
-                            Configurations()
+                            ConfigurationsPreview()
                         }
                     }
                 }

@@ -1,4 +1,4 @@
-package mir.oslav.jet.utils.example
+package com.jet.utils.example
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -26,7 +26,7 @@ import com.jet.utils.screenWidthPx
  * created on 01.09.2023
  */
 @Composable
-fun Configurations() {
+fun ConfigurationsPreview() {
 
     val configuration = LocalConfiguration.current
 

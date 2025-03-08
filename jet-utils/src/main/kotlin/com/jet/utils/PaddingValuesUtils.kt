@@ -23,7 +23,7 @@ public infix operator fun PaddingValues.plus(
 
     return remember(key1 = this, key2 = other) {
         val start = this.calculateStartPadding(layoutDirection = layoutDirection)
-            .plus(other = other.calculateStartPadding(layoutDirection))
+            .plus(other = other.calculateStartPadding(layoutDirection=layoutDirection))
         val top = this.calculateTopPadding() + other.calculateTopPadding()
         val end = this.calculateEndPadding(layoutDirection = layoutDirection)
             .plus(other = other.calculateEndPadding(layoutDirection = layoutDirection))

@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
  * @author Miroslav Hýbler <br>
  * created on 17.03.2023
  */
+@Deprecated(message = "Use material3 window size class instead")
 public val Configuration.isExtraLargeScreen: Boolean
     get() = Configuration.SCREENLAYOUT_SIZE_MASK.maskedEquals(
         other = Configuration.SCREENLAYOUT_SIZE_XLARGE
@@ -26,6 +27,7 @@ public val Configuration.isExtraLargeScreen: Boolean
  * @author Miroslav Hýbler <br>
  * created on 17.03.2023
  */
+@Deprecated(message = "Use material3 window size class instead")
 public val Configuration.isLargeScreen: Boolean
     get() = Configuration.SCREENLAYOUT_SIZE_MASK.maskedEquals(
         other = Configuration.SCREENLAYOUT_SIZE_LARGE
@@ -38,6 +40,7 @@ public val Configuration.isLargeScreen: Boolean
  * @author Miroslav Hýbler <br>
  * created on 17.03.2023
  */
+@Deprecated(message = "Use material3 window size class instead")
 public val Configuration.isNormalScreen: Boolean
     get() = Configuration.SCREENLAYOUT_SIZE_MASK.maskedEquals(
         other = Configuration.SCREENLAYOUT_SIZE_NORMAL
@@ -50,6 +53,7 @@ public val Configuration.isNormalScreen: Boolean
  * @author Miroslav Hýbler <br>
  * created on 17.03.2023
  */
+@Deprecated(message = "Use material3 window size class instead")
 public val Configuration.isSmallScreen: Boolean
     get() = Configuration.SCREENLAYOUT_SIZE_MASK.maskedEquals(
         other = Configuration.SCREENLAYOUT_SIZE_SMALL
@@ -90,6 +94,7 @@ public val Configuration.screenHeightPx: Float
  * True when actual screen orientation is portrait (vertical).
  * @since 1.0.2
  */
+@Deprecated(message = "Don't use isPortrait to determine device orientation, use material3 window size class instead")
 public val Configuration.isPortrait: Boolean
     get() = this.orientation == Configuration.ORIENTATION_PORTRAIT
 
@@ -98,6 +103,7 @@ public val Configuration.isPortrait: Boolean
  * True when actual screen orientation is landscape (horizontal).
  * @since 1.0.2
  */
+@Deprecated(message = "Don't use isLandscape to determine device orientation, use material3 window size class instead")
 public val Configuration.isLandScape: Boolean
     get() = this.orientation == Configuration.ORIENTATION_LANDSCAPE
 
@@ -107,5 +113,5 @@ public val Configuration.isLandScape: Boolean
  * @author Miroslav Hýbler <br>
  * created on 01.09.2023
  */
-context (Configuration)
+context (Configuration) //TODO
 private infix fun Int.maskedEquals(other: Int): Boolean = this.and(screenLayout) == other
