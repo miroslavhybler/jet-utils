@@ -1,3 +1,5 @@
+import io.netty.util.ReferenceCountUtil.release
+import org.gradle.kotlin.dsl.release
 import java.io.FileInputStream
 import java.util.Properties
 
@@ -79,4 +81,25 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components.getByName("release"))
+                groupId = "com.jet"
+                artifactId = "utils"
+                version = "1.2.0"
+                pom {
+                    description.set("Jitpack.io deploy")
+                }
+            }
+
+        }
+        repositories {
+            mavenLocal()
+        }
+    }
 }

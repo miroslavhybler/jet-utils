@@ -6,14 +6,14 @@ plugins {
 
 android {
     namespace = "com.jet.utils.example"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.jet.utils.example"
         minSdk = 21
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
-        versionName = "1.1.1"
+        versionName = "1.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
