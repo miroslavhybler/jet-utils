@@ -95,7 +95,7 @@ afterEvaluate {
                 from(components.getByName("release"))
                 groupId = "com.jet"
                 artifactId = "utils"
-                version = "1.2.0"
+                version = "1.3.0"
                 pom {
                     description.set("Jitpack.io deploy")
                 }
