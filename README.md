@@ -48,7 +48,7 @@ val WindowHeightSizeClass.isExpanded: Boolean
 
 
 ### Density 
-Simple functions to convert unints on `Density` without need of `with` scoped function:
+Simple functions to convert units on `Density` without need of `with` scoped function:
 ```agsl
 val px= density.dpToPx(dp = 24.dp)
 val dp = density.pxToDp(px = 24f)
@@ -56,5 +56,3 @@ val dp = density.pxToDp(px = 24f)
 ```
 
 ### Insets
-
-### Lifecycle Launched Effects
