@@ -55,6 +55,10 @@ android {
         }
     }
     publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
         multipleVariants {
             withSourcesJar()
             withJavadocJar()
@@ -64,18 +68,18 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+    implementation(libs.androidx.core.ktx) //Used for color utils
+
+    compileOnly(platform(libs.androidx.compose.bom))
+    compileOnly(libs.androidx.ui)
+    compileOnly(libs.androidx.ui.graphics)
+    compileOnly(libs.androidx.ui.tooling.preview)
+    compileOnly(libs.androidx.material3)
 
     /** Adaptive UI */
-    implementation(libs.androidx.adaptive)
-    implementation(libs.androidx.adaptive.layout)
-    implementation(libs.androidx.adaptive.navigation)
+    compileOnly(libs.androidx.adaptive)
+    compileOnly(libs.androidx.adaptive.layout)
+    compileOnly(libs.androidx.adaptive.navigation)
 
 
     testImplementation(libs.junit)

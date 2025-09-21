@@ -94,6 +94,16 @@ public fun MaterialColorsPreview(
                 )
             }
         )
+
+        ColorRow(
+            title = "surface",
+            colors = remember {
+                listOf(
+                    colorScheme.surface,
+                    colorScheme.onSurface,
+                )
+            }
+        )
     }
 }
 
