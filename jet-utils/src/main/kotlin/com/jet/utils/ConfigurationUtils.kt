@@ -113,5 +113,7 @@ public val Configuration.isLandScape: Boolean
  * @author Miroslav Hýbler <br>
  * created on 01.09.2023
  */
-context (Configuration) //TODO
-private infix fun Int.maskedEquals(other: Int): Boolean = this.and(screenLayout) == other
+context(configuration: Configuration)
+private infix fun Int.maskedEquals(other: Int): Boolean {
+    return this.and(other = configuration.screenLayout) == other
+}

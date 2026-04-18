@@ -1,8 +1,3 @@
-import io.netty.util.ReferenceCountUtil.release
-import org.gradle.kotlin.dsl.release
-import java.io.FileInputStream
-import java.util.Properties
-
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -17,7 +12,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 23
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -39,10 +34,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
-        freeCompilerArgs += "-Xcontext-receivers"
-    }
     kotlin {
         jvmToolchain(jdkVersion = 11)
     }
@@ -59,27 +50,32 @@ android {
             withSourcesJar()
             withJavadocJar()
         }
-        multipleVariants {
-            withSourcesJar()
-            withJavadocJar()
-        }
+    }
+}
+
+kotlin {
+    jvmToolchain(jdkVersion = 11)
+    compilerOptions {
+        freeCompilerArgs.add("-Xcontext-parameters")
     }
 }
 
 dependencies {
 
     implementation(libs.androidx.core.ktx) //Used for color utils
+    implementation(libs.androidx.annotation)
 
-    compileOnly(platform(libs.androidx.compose.bom))
-    compileOnly(libs.androidx.ui)
-    compileOnly(libs.androidx.ui.graphics)
-    compileOnly(libs.androidx.ui.tooling.preview)
-    compileOnly(libs.androidx.material3)
+    api(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    debugImplementation(libs.androidx.ui.tooling)
+    implementation(libs.androidx.material3)
 
     /** Adaptive UI */
-    compileOnly(libs.androidx.adaptive)
-    compileOnly(libs.androidx.adaptive.layout)
-    compileOnly(libs.androidx.adaptive.navigation)
+    api(libs.androidx.adaptive)
+    api(libs.androidx.adaptive.layout)
+    api(libs.androidx.adaptive.navigation)
 
 
     testImplementation(libs.junit)
@@ -95,7 +91,7 @@ afterEvaluate {
                 from(components.getByName("release"))
                 groupId = "com.jet"
                 artifactId = "utils"
-                version = "1.3.0"
+                version = "1.3.1"
                 pom {
                     description.set("Jitpack.io deploy")
                 }

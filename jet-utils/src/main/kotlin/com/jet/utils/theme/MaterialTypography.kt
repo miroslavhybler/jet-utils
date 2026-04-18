@@ -1,12 +1,18 @@
 package com.jet.utils.theme
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 
 
 /**
@@ -15,9 +21,22 @@ import androidx.compose.ui.tooling.preview.Preview
  * created on 01.09.2023
  */
 @Composable
+@Deprecated(message = "Use MaterialTypographyPreview instead")
 public fun MaterialTypography() {
-    Column(modifier = Modifier.fillMaxWidth()) {
+    MaterialTypographyPreview()
+}
 
+
+/**
+ * @since 1.3.0
+ */
+@Composable
+public fun MaterialTypographyPreview() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = MaterialTheme.colorScheme.background)
+    ) {
         Text(
             text = "Display Large (${MaterialTheme.typography.displayLarge.fontSize})",
             style = MaterialTheme.typography.displayLarge
@@ -28,7 +47,7 @@ public fun MaterialTypography() {
         )
         Text(
             text = "Display Small (${MaterialTheme.typography.headlineSmall.fontSize})",
-            style = MaterialTheme.typography.displayMedium
+            style = MaterialTheme.typography.displaySmall
         )
 
 
@@ -89,7 +108,19 @@ public fun MaterialTypography() {
 }
 
 @Composable
-@Preview(showBackground = true)
-private fun MaterialTypographyPreview() {
-    MaterialTypography()
+@PreviewLightDark()
+private fun MaterialTypographyPreviewPreview() {
+    val colorScheme = if (isSystemInDarkTheme())
+        darkColorScheme()
+    else
+        lightColorScheme()
+    MaterialTheme(
+        colorScheme = colorScheme,
+    ) {
+        Surface(
+            color = MaterialTheme.colorScheme.background,
+        ) {
+            MaterialTypographyPreview()
+        }
+    }
 }

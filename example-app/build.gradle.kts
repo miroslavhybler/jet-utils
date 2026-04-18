@@ -10,10 +10,10 @@ android {
 
     defaultConfig {
         applicationId = "com.jet.utils.example"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 36
         versionCode = 1
-        versionName = "1.2.0"
+        versionName = "1.3.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -34,12 +34,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
-    kotlin {
-        jvmToolchain(jdkVersion = 11)
-    }
     buildFeatures {
         compose = true
         buildConfig = true
@@ -49,6 +43,10 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+}
+
+kotlin {
+    jvmToolchain(jdkVersion = 11)
 }
 
 dependencies {

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.Dp
 
 
 /**
@@ -31,4 +32,35 @@ public infix operator fun PaddingValues.plus(
 
         return@remember PaddingValues(start = start, top = top, end = end, bottom = bottom)
     }
+}
+
+
+/**
+ * Creates new instance of [PaddingValues] with new values or value from this instance when parameter
+ * is null.
+ * @param start New start padding value, using [androidx.compose.ui.unit.LayoutDirection]
+ * @param top New top padding value.
+ * @param end New end padding value, using [androidx.compose.ui.unit.LayoutDirection]
+ * @param bottom New bottom padding value.
+ * @since 1.3.1
+ */
+@Composable
+fun PaddingValues.copy(
+    start: Dp? = null,
+    top: Dp? = null,
+    end: Dp? = null,
+    bottom: Dp? = null,
+): PaddingValues {
+    val direction = LocalLayoutDirection.current
+    val startResolved = start ?: this.calculateStartPadding(layoutDirection = direction)
+    val topResolved = top ?: this.calculateTopPadding()
+    val endResolved = end ?: this.calculateEndPadding(layoutDirection = direction)
+    val bottomResolved = bottom ?: this.calculateBottomPadding()
+
+    return PaddingValues(
+        start = startResolved,
+        top = topResolved,
+        end = endResolved,
+        bottom = bottomResolved,
+    )
 }

@@ -1,6 +1,7 @@
 package com.jet.utils.theme
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -8,28 +9,39 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 
 
 /**
+ * @param modifier Unused but kept for backward compatibility
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 26.08.2023
  */
 @Composable
+@Deprecated(message = "Use MaterialColorSchemePreview instead")
 public fun MaterialColorsPreview(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier //Unused but kept for backward compatibility
 ) {
+    MaterialColorSchemePreview()
+}
+
+@Composable
+public fun MaterialColorSchemePreview() {
     val colorScheme = MaterialTheme.colorScheme
 
     Column(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
     ) {
@@ -107,6 +119,7 @@ public fun MaterialColorsPreview(
     }
 }
 
+
 @Composable
 private fun ColorRow(
     modifier: Modifier = Modifier,
@@ -140,8 +153,18 @@ private fun ColorRow(
 
 
 @Composable
-@Preview(showBackground = true)
+@PreviewLightDark
 private fun PalletePreview() {
 
-    MaterialColorsPreview()
+    val colorScheme = if (isSystemInDarkTheme())
+        darkColorScheme()
+    else
+        lightColorScheme()
+    MaterialTheme(
+        colorScheme = colorScheme,
+    ) {
+        Surface(
+            color = MaterialTheme.colorScheme.background,
+        ) { MaterialColorSchemePreview() }
+    }
 }
