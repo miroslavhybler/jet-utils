@@ -3,6 +3,7 @@
 package com.jet.utils.theme
 
 import android.content.res.Configuration
+import androidx.annotation.Keep
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
@@ -23,6 +24,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.internal.colorUtil.Cam
 import androidx.compose.material3.lightColorScheme
@@ -39,9 +41,24 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.ColorUtils
 
+/**
+ * Shared card shape used by both role blocks and tonal swatches.
+ */
 private val PreviewItemShape = RoundedCornerShape(size = 10.dp)
+
+/**
+ * Vertical and horizontal spacing between larger preview sections.
+ */
 private val PreviewSectionSpacing = 10.dp
+
+/**
+ * Tight spacing used between adjacent chips inside the same section.
+ */
 private val PreviewItemSpacing = 4.dp
+
+/**
+ * Material tone stops rendered by the tonal palette preview.
+ */
 private val ToneStops: List<Int> = listOf(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 99, 100)
 
 
@@ -78,12 +95,17 @@ public fun MaterialColorSchemeTonesPreview() {
     MaterialColorSchemeTonesPreviewLayout(colorScheme = MaterialTheme.colorScheme)
 }
 
+/**
+ * Arranges the active [ColorScheme] into grouped Material color-role sections.
+ */
 @Composable
 private fun MaterialColorSchemePreviewLayout(
     colorScheme: ColorScheme,
     modifier: Modifier = Modifier,
 ) {
-    val previewModel = remember(colorScheme) { MaterialColorRolePreviewModel(colorScheme = colorScheme) }
+    val previewModel = remember(key1 = colorScheme) {
+        MaterialColorRolePreviewModel(colorScheme = colorScheme)
+    }
 
     Column(
         modifier = modifier
@@ -148,6 +170,9 @@ private fun MaterialColorSchemePreviewLayout(
     }
 }
 
+/**
+ * Renders the derived tonal ramps for the active [ColorScheme].
+ */
 @Composable
 private fun MaterialColorSchemeTonesPreviewLayout(
     colorScheme: ColorScheme,
@@ -179,6 +204,9 @@ private fun MaterialColorSchemeTonesPreviewLayout(
     }
 }
 
+/**
+ * Displays the primary, secondary, tertiary, or error role stack.
+ */
 @Composable
 private fun AccentRoleColumn(
     headline: AccentRolePreview,
@@ -223,6 +251,9 @@ private fun AccentRoleColumn(
     }
 }
 
+/**
+ * Displays a fixed-role section with its paired fixed tones and readable foreground roles.
+ */
 @Composable
 private fun FixedRoleColumn(
     roles: FixedRolePreview,
@@ -273,6 +304,9 @@ private fun FixedRoleColumn(
     }
 }
 
+/**
+ * Displays the surface family together with outline and on-surface support roles.
+ */
 @Composable
 private fun SurfaceRoleGrid(
     roles: SurfaceRolePreview,
@@ -357,6 +391,9 @@ private fun SurfaceRoleGrid(
     }
 }
 
+/**
+ * Displays inverse and utility roles that sit beside the main surface grid.
+ */
 @Composable
 private fun SideRoleColumn(
     roles: SideRolePreview,
@@ -415,6 +452,9 @@ private fun SideRoleColumn(
     }
 }
 
+/**
+ * Displays one full tonal ramp row with a left-aligned palette name.
+ */
 @Composable
 private fun TonePaletteRow(
     palette: TonePalettePreview,
@@ -449,6 +489,9 @@ private fun TonePaletteRow(
     }
 }
 
+/**
+ * Draws a labeled color block for a Material role.
+ */
 @Composable
 private fun RoleColorBlock(
     label: String,
@@ -457,7 +500,8 @@ private fun RoleColorBlock(
     contentColor: Color? = null,
 ) {
     val resolvedColor = color.takeOrElse { MaterialTheme.colorScheme.surface }
-    val resolvedContentColor = contentColor?.takeOrElse { resolvedColor.bestTextColor() } ?: resolvedColor.bestTextColor()
+    val resolvedContentColor =
+        contentColor?.takeOrElse { resolvedColor.bestTextColor() } ?: resolvedColor.bestTextColor()
     val borderColor = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.7f)
 
     Box(
@@ -477,6 +521,9 @@ private fun RoleColorBlock(
     }
 }
 
+/**
+ * Draws a single tone swatch with the tone number centered on top.
+ */
 @Composable
 private fun ToneColorBlock(
     swatch: ToneSwatch,
@@ -490,7 +537,7 @@ private fun ToneColorBlock(
             .border(width = 1.dp, color = borderColor, shape = PreviewItemShape),
         contentAlignment = Alignment.Center,
     ) {
-        androidx.compose.material3.Text(
+        Text(
             text = swatch.tone.toString(),
             color = swatch.color.bestTextColor(),
             style = MaterialTheme.typography.titleMedium,
@@ -498,6 +545,9 @@ private fun ToneColorBlock(
     }
 }
 
+/**
+ * Builds one tonal palette by keeping the seed hue and chroma and sampling Material tone stops.
+ */
 private fun buildTonePalette(
     name: String,
     seed: Color,
@@ -517,31 +567,44 @@ private fun buildTonePalette(
     )
 }
 
+/**
+ * Converts a [ColorScheme] into a UI-oriented model that is easier for the preview layouts to render.
+ */
 private fun MaterialColorRolePreviewModel(
     colorScheme: ColorScheme,
 ): MaterialColorRolePreviewModel {
     val primaryFixed = colorScheme.primaryFixed.orElse(fallback = colorScheme.primaryContainer)
     val primaryFixedDim = colorScheme.primaryFixedDim.orElse(fallback = colorScheme.inversePrimary)
-    val onPrimaryFixed = colorScheme.onPrimaryFixed.orElse(fallback = colorScheme.onPrimaryContainer)
-    val onPrimaryFixedVariant = colorScheme.onPrimaryFixedVariant.orElse(fallback = colorScheme.primary)
+    val onPrimaryFixed =
+        colorScheme.onPrimaryFixed.orElse(fallback = colorScheme.onPrimaryContainer)
+    val onPrimaryFixedVariant =
+        colorScheme.onPrimaryFixedVariant.orElse(fallback = colorScheme.primary)
 
-    val secondaryFixed = colorScheme.secondaryFixed.orElse(fallback = colorScheme.secondaryContainer)
+    val secondaryFixed =
+        colorScheme.secondaryFixed.orElse(fallback = colorScheme.secondaryContainer)
     val secondaryFixedDim = colorScheme.secondaryFixedDim.orElse(fallback = colorScheme.secondary)
-    val onSecondaryFixed = colorScheme.onSecondaryFixed.orElse(fallback = colorScheme.onSecondaryContainer)
-    val onSecondaryFixedVariant = colorScheme.onSecondaryFixedVariant.orElse(fallback = colorScheme.secondary)
+    val onSecondaryFixed =
+        colorScheme.onSecondaryFixed.orElse(fallback = colorScheme.onSecondaryContainer)
+    val onSecondaryFixedVariant =
+        colorScheme.onSecondaryFixedVariant.orElse(fallback = colorScheme.secondary)
 
     val tertiaryFixed = colorScheme.tertiaryFixed.orElse(fallback = colorScheme.tertiaryContainer)
     val tertiaryFixedDim = colorScheme.tertiaryFixedDim.orElse(fallback = colorScheme.tertiary)
-    val onTertiaryFixed = colorScheme.onTertiaryFixed.orElse(fallback = colorScheme.onTertiaryContainer)
-    val onTertiaryFixedVariant = colorScheme.onTertiaryFixedVariant.orElse(fallback = colorScheme.tertiary)
+    val onTertiaryFixed =
+        colorScheme.onTertiaryFixed.orElse(fallback = colorScheme.onTertiaryContainer)
+    val onTertiaryFixedVariant =
+        colorScheme.onTertiaryFixedVariant.orElse(fallback = colorScheme.tertiary)
 
     val surfaceDim = colorScheme.surfaceDim.orElse(fallback = colorScheme.surface)
     val surfaceBright = colorScheme.surfaceBright.orElse(fallback = colorScheme.surface)
-    val surfaceContainerLowest = colorScheme.surfaceContainerLowest.orElse(fallback = colorScheme.surface)
+    val surfaceContainerLowest =
+        colorScheme.surfaceContainerLowest.orElse(fallback = colorScheme.surface)
     val surfaceContainerLow = colorScheme.surfaceContainerLow.orElse(fallback = colorScheme.surface)
     val surfaceContainer = colorScheme.surfaceContainer.orElse(fallback = colorScheme.surface)
-    val surfaceContainerHigh = colorScheme.surfaceContainerHigh.orElse(fallback = colorScheme.surfaceVariant)
-    val surfaceContainerHighest = colorScheme.surfaceContainerHighest.orElse(fallback = colorScheme.surfaceVariant)
+    val surfaceContainerHigh =
+        colorScheme.surfaceContainerHigh.orElse(fallback = colorScheme.surfaceVariant)
+    val surfaceContainerHighest =
+        colorScheme.surfaceContainerHighest.orElse(fallback = colorScheme.surfaceVariant)
 
     return MaterialColorRolePreviewModel(
         primary = accentPreview(
@@ -606,9 +669,21 @@ private fun MaterialColorRolePreviewModel(
             onFixedVariant = onTertiaryFixedVariant,
         ),
         surfaceRoles = SurfaceRolePreview(
-            surfaceDim = role(label = "Surface Dim", color = surfaceDim, contentColor = colorScheme.onSurface),
-            surface = role(label = "Surface", color = colorScheme.surface, contentColor = colorScheme.onSurface),
-            surfaceBright = role(label = "Surface Bright", color = surfaceBright, contentColor = colorScheme.onSurface),
+            surfaceDim = role(
+                label = "Surface Dim",
+                color = surfaceDim,
+                contentColor = colorScheme.onSurface
+            ),
+            surface = role(
+                label = "Surface",
+                color = colorScheme.surface,
+                contentColor = colorScheme.onSurface
+            ),
+            surfaceBright = role(
+                label = "Surface Bright",
+                color = surfaceBright,
+                contentColor = colorScheme.onSurface
+            ),
             surfaceContainerLowest = role(
                 label = "Surface Container Lowest",
                 color = surfaceContainerLowest,
@@ -635,7 +710,10 @@ private fun MaterialColorRolePreviewModel(
                 contentColor = colorScheme.onSurface,
             ),
             onSurface = role(label = "On Surface", color = colorScheme.onSurface),
-            onSurfaceVariant = role(label = "On Surface Variant", color = colorScheme.onSurfaceVariant),
+            onSurfaceVariant = role(
+                label = "On Surface Variant",
+                color = colorScheme.onSurfaceVariant
+            ),
             outline = role(label = "Outline", color = colorScheme.outline),
             outlineVariant = role(label = "Outline Variant", color = colorScheme.outlineVariant),
         ),
@@ -652,11 +730,17 @@ private fun MaterialColorRolePreviewModel(
             ),
             inversePrimary = role(label = "Inverse Primary", color = colorScheme.inversePrimary),
             scrim = role(label = "Scrim", color = colorScheme.scrim),
-            surfaceTint = role(label = "Surface Tint", color = colorScheme.surfaceTint.orElse(fallback = colorScheme.primary)),
+            surfaceTint = role(
+                label = "Surface Tint",
+                color = colorScheme.surfaceTint.orElse(fallback = colorScheme.primary)
+            ),
         ),
     )
 }
 
+/**
+ * Creates the preview model for one accent role family.
+ */
 private fun accentPreview(
     mainLabel: String,
     mainColor: Color,
@@ -670,11 +754,22 @@ private fun accentPreview(
     return AccentRolePreview(
         main = role(label = mainLabel, color = mainColor, contentColor = onMainColor),
         onMain = role(label = onMainLabel, color = onMainColor, contentColor = mainColor),
-        container = role(label = containerLabel, color = containerColor, contentColor = onContainerColor),
-        onContainer = role(label = onContainerLabel, color = onContainerColor, contentColor = containerColor),
+        container = role(
+            label = containerLabel,
+            color = containerColor,
+            contentColor = onContainerColor
+        ),
+        onContainer = role(
+            label = onContainerLabel,
+            color = onContainerColor,
+            contentColor = containerColor
+        ),
     )
 }
 
+/**
+ * Creates the preview model for one fixed-color family.
+ */
 private fun fixedPreview(
     prefix: String,
     fixed: Color,
@@ -694,6 +789,9 @@ private fun fixedPreview(
     )
 }
 
+/**
+ * Wraps a labeled preview color and its preferred content color.
+ */
 private fun role(
     label: String,
     color: Color,
@@ -706,6 +804,9 @@ private fun role(
     )
 }
 
+/**
+ * Picks black or white text based on the stronger contrast ratio against this background color.
+ */
 private fun Color.bestTextColor(): Color {
     val background = this.toArgb()
     val blackContrast = ColorUtils.calculateContrast(Color.Black.toArgb(), background)
@@ -714,12 +815,19 @@ private fun Color.bestTextColor(): Color {
     return if (whiteContrast >= blackContrast) Color.White else Color.Black
 }
 
+/**
+ * Resolves [Color.Unspecified] to a provided fallback color.
+ */
 private fun Color.orElse(
     fallback: Color,
 ): Color {
     return this.takeOrElse { fallback }
 }
 
+/**
+ * Aggregates all sections required by the full color-role preview.
+ */
+@Keep
 @Immutable
 private data class MaterialColorRolePreviewModel(
     val primary: AccentRolePreview,
@@ -733,6 +841,10 @@ private data class MaterialColorRolePreviewModel(
     val sideRoles: SideRolePreview,
 )
 
+/**
+ * Describes one accent role stack made of main, on-main, container, and on-container colors.
+ */
+@Keep
 @Immutable
 private data class AccentRolePreview(
     val main: ColorRolePreview,
@@ -741,6 +853,10 @@ private data class AccentRolePreview(
     val onContainer: ColorRolePreview,
 )
 
+/**
+ * Describes one fixed-color family and its matching foreground roles.
+ */
+@Keep
 @Immutable
 private data class FixedRolePreview(
     val fixed: ColorRolePreview,
@@ -749,6 +865,10 @@ private data class FixedRolePreview(
     val onFixedVariant: ColorRolePreview,
 )
 
+/**
+ * Groups surface-related roles that are rendered together in the lower main grid.
+ */
+@Keep
 @Immutable
 private data class SurfaceRolePreview(
     val surfaceDim: ColorRolePreview,
@@ -765,6 +885,10 @@ private data class SurfaceRolePreview(
     val outlineVariant: ColorRolePreview,
 )
 
+/**
+ * Groups inverse and utility roles rendered in the side column.
+ */
+@Keep
 @Immutable
 private data class SideRolePreview(
     val inverseSurface: ColorRolePreview,
@@ -774,6 +898,10 @@ private data class SideRolePreview(
     val surfaceTint: ColorRolePreview,
 )
 
+/**
+ * Represents one labeled Material role preview block.
+ */
+@Keep
 @Immutable
 private data class ColorRolePreview(
     val label: String,
@@ -781,18 +909,29 @@ private data class ColorRolePreview(
     val contentColor: Color? = null,
 )
 
+/**
+ * Represents one named tonal palette row.
+ */
+@Keep
 @Immutable
 private data class TonePalettePreview(
     val name: String,
     val swatches: List<ToneSwatch>,
 )
 
+/**
+ * Represents a single tone stop inside a tonal palette row.
+ */
+@Keep
 @Immutable
 private data class ToneSwatch(
     val tone: Int,
     val color: Color,
 )
 
+/**
+ * Preview for the color-role sheet in both light and dark modes.
+ */
 @Composable
 @Preview(
     name = "Color Roles Light",
@@ -817,6 +956,9 @@ private fun MaterialColorSchemePreviewPreview() {
     }
 }
 
+/**
+ * Preview for the tonal palette sheet in both light and dark modes.
+ */
 @Composable
 @Preview(
     name = "Color Tones Light",
