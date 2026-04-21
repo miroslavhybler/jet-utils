@@ -25,8 +25,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.jet.utils.plus
 import com.jet.utils.theme.MaterialColorSchemePreview
-import com.jet.utils.theme.MaterialColorsPreview
-import com.jet.utils.theme.MaterialTypography
+import com.jet.utils.theme.MaterialColorSchemeTonesPreview
 import com.jet.utils.theme.MaterialTypographyPreview
 
 
@@ -69,6 +68,8 @@ class MainActivity : ComponentActivity() {
 
                             MaterialColorSchemePreview()
 
+                            MaterialColorSchemeTonesPreview()
+
                             ConfigurationsPreview()
                         }
                     }
@@ -77,4 +78,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-

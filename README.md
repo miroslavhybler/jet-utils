@@ -179,11 +179,12 @@ val @receiver:ColorInt Int.isFullyLightColor: Boolean
 
 ### Theme and preview utilities
 
-Composable previews for checking Material 3 color schemes, typography, and safe-area padding behavior.
+Composable previews for checking Material 3 color roles, tonal palettes, typography, and safe-area padding behavior.
 
 ```kotlin
 import com.jet.utils.SafePaddingsPreview
 import com.jet.utils.theme.MaterialColorSchemePreview
+import com.jet.utils.theme.MaterialColorSchemeTonesPreview
 import com.jet.utils.theme.MaterialColorsPreview
 import com.jet.utils.theme.MaterialTypography
 import com.jet.utils.theme.MaterialTypographyPreview
@@ -193,6 +194,9 @@ fun SafePaddingsPreview()
 
 @Composable
 fun MaterialColorSchemePreview()
+
+@Composable
+fun MaterialColorSchemeTonesPreview()
 
 @Composable
 fun MaterialTypographyPreview()
