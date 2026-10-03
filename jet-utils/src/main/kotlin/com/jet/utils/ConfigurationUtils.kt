@@ -1,5 +1,6 @@
 package com.jet.utils
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
@@ -9,8 +10,7 @@ import androidx.compose.ui.unit.dp
 
 
 /**
- * Returns true when the screen is at least approximately 720x960 dp units, meaning the device is
- * basically a tablet, false otherwise.
+ * Returns true when the legacy configuration size bucket is exactly extra large.
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 17.03.2023
@@ -22,7 +22,7 @@ public val Configuration.isExtraLargeScreen: Boolean
     )
 
 /**
- * Returns true when the screen is at least approximately 480x640 dp units, false otherwise.
+ * Returns true when the legacy configuration size bucket is exactly large.
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 17.03.2023
@@ -35,7 +35,7 @@ public val Configuration.isLargeScreen: Boolean
 
 
 /**
- * Returns true when the screen is at least approximately 320x470 dp units, false otherwise.
+ * Returns true when the legacy configuration size bucket is exactly normal.
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 17.03.2023
@@ -48,7 +48,7 @@ public val Configuration.isNormalScreen: Boolean
 
 
 /**
- * Returns true when the screen is at least approximately 320x426 dp units, false otherwise.
+ * Returns true when the legacy configuration size bucket is exactly small.
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 17.03.2023
@@ -61,11 +61,21 @@ public val Configuration.isSmallScreen: Boolean
 
 
 /**
- * Returns screen width in pixels
+ * Returns the configuration width converted to pixels.
+ *
+ * This can differ from the actual Compose container in multi-window and resizable layouts.
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 17.03.2023
  */
+@Deprecated(
+    message = "Configuration.screenWidthDp can differ from the actual Compose window. Use LocalWindowInfo.current.containerSize.width instead.",
+    replaceWith = ReplaceWith(
+        expression = "LocalWindowInfo.current.containerSize.width.toFloat()",
+        imports = ["androidx.compose.ui.platform.LocalWindowInfo"],
+    ),
+)
+@get:SuppressLint("ConfigurationScreenWidthHeight")
 public val Configuration.screenWidthPx: Float
     @Composable
     @ReadOnlyComposable
@@ -76,11 +86,21 @@ public val Configuration.screenWidthPx: Float
 
 
 /**
- * Returns screen height in pixels
+ * Returns the configuration height converted to pixels.
+ *
+ * This can differ from the actual Compose container in multi-window and resizable layouts.
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 17.03.2023
  */
+@Deprecated(
+    message = "Configuration.screenHeightDp can differ from the actual Compose window. Use LocalWindowInfo.current.containerSize.height instead.",
+    replaceWith = ReplaceWith(
+        expression = "LocalWindowInfo.current.containerSize.height.toFloat()",
+        imports = ["androidx.compose.ui.platform.LocalWindowInfo"],
+    ),
+)
+@get:SuppressLint("ConfigurationScreenWidthHeight")
 public val Configuration.screenHeightPx: Float
     @Composable
     @ReadOnlyComposable

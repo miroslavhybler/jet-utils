@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.jet.utils.adaptive
 
 import androidx.window.core.layout.WindowHeightSizeClass
@@ -8,6 +10,9 @@ import androidx.window.core.layout.WindowWidthSizeClass
  * Used for shortening the code while using [androidx.window.core.layout.WindowSizeClass]
  * @since 1.2.0
  */
+@Deprecated(
+    message = "WindowWidthSizeClass is deprecated by AndroidX. Use WindowSizeClass.isWidthAtLeastBreakpoint and process breakpoints from largest to smallest.",
+)
 val WindowWidthSizeClass.isCompat: Boolean
     get() = this == WindowWidthSizeClass.COMPACT
 
@@ -16,6 +21,9 @@ val WindowWidthSizeClass.isCompat: Boolean
  * Used for shortening the code while using [androidx.window.core.layout.WindowSizeClass]
  * @since 1.2.0
  */
+@Deprecated(
+    message = "WindowWidthSizeClass is deprecated by AndroidX. Use WindowSizeClass.isWidthAtLeastBreakpoint and process breakpoints from largest to smallest.",
+)
 val WindowWidthSizeClass.isMedium: Boolean
     get() = this == WindowWidthSizeClass.MEDIUM
 
@@ -24,6 +32,9 @@ val WindowWidthSizeClass.isMedium: Boolean
  * Used for shortening the code while using [androidx.window.core.layout.WindowSizeClass]
  * @since 1.2.0
  */
+@Deprecated(
+    message = "WindowWidthSizeClass is deprecated by AndroidX. Use WindowSizeClass.isWidthAtLeastBreakpoint and process breakpoints from largest to smallest.",
+)
 val WindowWidthSizeClass.isExpanded: Boolean
     get() = this == WindowWidthSizeClass.EXPANDED
 
@@ -32,6 +43,9 @@ val WindowWidthSizeClass.isExpanded: Boolean
  * Used for shortening the code while using [androidx.window.core.layout.WindowSizeClass]
  * @since 1.2.0
  */
+@Deprecated(
+    message = "WindowHeightSizeClass is deprecated by AndroidX. Use WindowSizeClass.isHeightAtLeastBreakpoint and process breakpoints from largest to smallest.",
+)
 val WindowHeightSizeClass.isCompat: Boolean
     get() = this == WindowHeightSizeClass.COMPACT
 
@@ -40,6 +54,9 @@ val WindowHeightSizeClass.isCompat: Boolean
  * Used for shortening the code while using [androidx.window.core.layout.WindowSizeClass]
  * @since 1.2.0
  */
+@Deprecated(
+    message = "WindowHeightSizeClass is deprecated by AndroidX. Use WindowSizeClass.isHeightAtLeastBreakpoint and process breakpoints from largest to smallest.",
+)
 val WindowHeightSizeClass.isMedium: Boolean
     get() = this == WindowHeightSizeClass.MEDIUM
 
@@ -48,5 +65,8 @@ val WindowHeightSizeClass.isMedium: Boolean
  * Used for shortening the code while using [androidx.window.core.layout.WindowSizeClass]
  * @since 1.2.0
  */
+@Deprecated(
+    message = "WindowHeightSizeClass is deprecated by AndroidX. Use WindowSizeClass.isHeightAtLeastBreakpoint and process breakpoints from largest to smallest.",
+)
 val WindowHeightSizeClass.isExpanded: Boolean
     get() = this == WindowHeightSizeClass.EXPANDED

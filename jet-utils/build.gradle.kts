@@ -17,10 +17,6 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
-    lint {
-        this.disable.add("RedundantVisibilityModifier")
-    }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -63,13 +59,16 @@ kotlin {
 dependencies {
 
     implementation(libs.androidx.core.ktx) //Used for color utils
-    implementation(libs.androidx.annotation)
+    api(libs.androidx.annotation)
 
     api(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
+    api(libs.androidx.compose.runtime)
+    api(libs.androidx.foundation.layout)
+    api(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.material3)
 
     /** Adaptive UI */
@@ -81,6 +80,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
 }
 
 

@@ -55,7 +55,7 @@ private const val totalLightLuminance: Float = 1f
 
 
 /**
- * True when color is probably light based on luminance
+ * True when color is probably dark based on luminance.
  * @since 1.0.1
  * @author Miroslav Hýbler <br>
  * created on 17.09.2023
@@ -75,7 +75,7 @@ public val @receiver:ColorInt Int.isDarkColor: Boolean
 
 
 /**
- * True when color is probably light based on luminance
+ * True when color is fully dark based on luminance.
  * @since 1.0.1
  * @author Miroslav Hýbler <br>
  * created on 17.09.2023
@@ -92,7 +92,7 @@ public val @receiver:ColorInt Int.isFullyDarkColor: Boolean
 
 
 /**
- * True when color is probably light based on luminance
+ * True when color is fully light based on luminance.
  * @since 1.0.1
  * @author Miroslav Hýbler <br>
  * created on 17.09.2023

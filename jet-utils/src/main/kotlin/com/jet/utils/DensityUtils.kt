@@ -7,10 +7,8 @@ import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.TextUnit
 
 
 /**
@@ -44,7 +42,7 @@ public fun Density.dpToPx(dp: Dp): Float = dp.toPx()
 
 
 /**
- * @return Height of status bar id dp units.
+ * @return Height of the status bar in dp units.
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 01.09.2023
@@ -92,7 +90,7 @@ public fun Density.navigationBarsPaddingPx(): Int {
 
 
 /**
- * @return Ime height (incuding navigation bar too) in dp units
+ * @return Current IME bottom inset in dp units.
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 01.09.2023
@@ -104,7 +102,7 @@ public fun Density.imePadding(): Dp {
 
 
 /**
- * @return Ime height (incuding navigation bar too) in pixels
+ * @return Current IME bottom inset in pixels.
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 01.09.2023

@@ -42,11 +42,11 @@ public fun MaterialTypographyPreview() {
             style = MaterialTheme.typography.displayLarge
         )
         Text(
-            text = "Display Medium (${MaterialTheme.typography.headlineMedium.fontSize})",
+            text = "Display Medium (${MaterialTheme.typography.displayMedium.fontSize})",
             style = MaterialTheme.typography.displayMedium
         )
         Text(
-            text = "Display Small (${MaterialTheme.typography.headlineSmall.fontSize})",
+            text = "Display Small (${MaterialTheme.typography.displaySmall.fontSize})",
             style = MaterialTheme.typography.displaySmall
         )
 

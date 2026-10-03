@@ -1,5 +1,3 @@
-@file:Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE")
-
 package com.jet.utils.theme
 
 import android.content.res.Configuration
@@ -26,7 +24,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.internal.colorUtil.Cam
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
@@ -63,7 +60,7 @@ private val ToneStops: List<Int> = listOf(0, 10, 20, 30, 40, 50, 60, 70, 80, 90,
 
 
 /**
- * @param modifier Unused but kept for backward compatibility
+ * @param modifier Modifier applied to the preview layout.
  * @since 1.0.0
  * @author Miroslav Hýbler <br>
  * created on 26.08.2023
@@ -88,9 +85,15 @@ public fun MaterialColorSchemePreview() {
 }
 
 /**
- * Shows tonal ramps derived from the active Material 3 color scheme.
+ * Shows approximate tonal ramps derived from the active Material 3 color scheme.
+ *
+ * A [ColorScheme] contains selected role colors rather than the source tonal palettes, so it is not
+ * possible to reconstruct the exact palettes exported by Material Theme Builder from it.
  */
 @Composable
+@Deprecated(
+    message = "A ColorScheme does not expose its source tonal palettes, so this preview cannot reproduce the designer's exact Material palettes. Prefer previewing explicit palette values exported by Material Theme Builder.",
+)
 public fun MaterialColorSchemeTonesPreview() {
     MaterialColorSchemeTonesPreviewLayout(colorScheme = MaterialTheme.colorScheme)
 }
@@ -546,18 +549,24 @@ private fun ToneColorBlock(
 }
 
 /**
- * Builds one tonal palette by keeping the seed hue and chroma and sampling Material tone stops.
+ * Builds an approximate tonal palette by preserving the seed's CIE Lab chromatic components and
+ * sampling the requested lightness values. This deliberately avoids Material3's private color APIs.
  */
 private fun buildTonePalette(
     name: String,
     seed: Color,
 ): TonePalettePreview {
     val seedColor = seed.takeOrElse { Color.Gray }
-    val seedCam = Cam.fromInt(seedColor.toArgb())
+    val lab = DoubleArray(size = 3)
+    ColorUtils.colorToLAB(seedColor.toArgb(), lab)
     val swatches = ToneStops.map { tone ->
         ToneSwatch(
             tone = tone,
-            color = Color(Cam.getInt(seedCam.hue, seedCam.chroma, tone.toFloat())),
+            color = when (tone) {
+                0 -> Color.Black
+                100 -> Color.White
+                else -> Color(ColorUtils.LABToColor(tone.toDouble(), lab[1], lab[2]))
+            },
         )
     }
 
@@ -973,6 +982,7 @@ private fun MaterialColorSchemePreviewPreview() {
     showBackground = true,
     uiMode = Configuration.UI_MODE_NIGHT_YES,
 )
+@Suppress("DEPRECATION")
 private fun MaterialColorSchemeTonesPreviewPreview() {
     val colorScheme = if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()
 

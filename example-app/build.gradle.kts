@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.jet.utils.example"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.jet.utils.example"
         minSdk = 23
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.3.2"
 

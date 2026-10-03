@@ -466,7 +466,7 @@ private fun AdaptiveAndMotionScreen() {
 
     ShowcaseSection(
         title = "Window size class shortcuts",
-        description = "The adaptive helpers keep width and height class checks terse when branching layouts.",
+        description = "These legacy shortcuts remain available for compatibility. New code should query WindowSizeClass breakpoints directly.",
     ) {
         MetricGrid(
             items =
@@ -494,7 +494,7 @@ private fun AdaptiveAndMotionScreen() {
 
     ShowcaseSection(
         title = "Configuration metrics",
-        description = "These values come from the configuration utilities in the library and mirror the current display in both dp and px.",
+        description = "These legacy configuration conversions can differ from the actual container in multi-window layouts; use LocalWindowInfo for new code.",
     ) {
         MetricGrid(
             items =
@@ -541,8 +541,8 @@ private fun AdaptiveAndMotionScreen() {
     }
 
     ShowcaseSection(
-        title = "Animation scale",
-        description = "This reflects the system animator duration scale from developer options so custom animations can respect the user or debugging environment.",
+        title = "Legacy animation scale",
+        description = "These deprecated helpers read the animator duration setting once. Compose animations already observe and respect the system scale.",
     ) {
         MetricGrid(
             items =
@@ -582,7 +582,7 @@ private fun ThemeAndColorScreen() {
 
     ShowcaseSection(
         title = "Tonal palettes",
-        description = "This tonal-ramp preview mirrors the palette view designers use to inspect how the active theme spreads across Material tone stops.",
+        description = "This deprecated preview approximates tone stops from role colors. Use explicit Theme Builder palette values when exact designer parity matters.",
     ) {
         MaterialColorSchemeTonesPreview()
     }

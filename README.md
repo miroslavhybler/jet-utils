@@ -18,7 +18,7 @@ dependencyResolutionManagement {
 
 ```kotlin
 dependencies {
-    implementation("com.github.miroslavhybler:jet-utils:1.3.1")
+    implementation("com.github.miroslavhybler:jet-utils:1.3.2")
 }
 ```
 
@@ -30,30 +30,30 @@ The public API currently lives in:
 - `com.jet.utils.adaptive`
 - `com.jet.utils.theme`
 
-### Adaptive window size helpers
+### Legacy adaptive window size helpers
 
-Shortcuts for `androidx.window.core.layout.WindowWidthSizeClass` and `WindowHeightSizeClass`.
+These shortcuts remain available for compatibility, but their AndroidX receiver types are
+deprecated. New code should use `WindowSizeClass.isWidthAtLeastBreakpoint(...)` and
+`isHeightAtLeastBreakpoint(...)`, evaluating breakpoints from largest to smallest.
 
 ```kotlin
 import com.jet.utils.adaptive.isCompat
 import com.jet.utils.adaptive.isExpanded
 import com.jet.utils.adaptive.isMedium
 
+@Deprecated("Use WindowSizeClass.isWidthAtLeastBreakpoint")
 val WindowWidthSizeClass.isCompat: Boolean
+@Deprecated("Use WindowSizeClass.isWidthAtLeastBreakpoint")
 val WindowWidthSizeClass.isMedium: Boolean
+@Deprecated("Use WindowSizeClass.isWidthAtLeastBreakpoint")
 val WindowWidthSizeClass.isExpanded: Boolean
 
+@Deprecated("Use WindowSizeClass.isHeightAtLeastBreakpoint")
 val WindowHeightSizeClass.isCompat: Boolean
+@Deprecated("Use WindowSizeClass.isHeightAtLeastBreakpoint")
 val WindowHeightSizeClass.isMedium: Boolean
+@Deprecated("Use WindowSizeClass.isHeightAtLeastBreakpoint")
 val WindowHeightSizeClass.isExpanded: Boolean
-```
-
-Example:
-
-```kotlin
-if (windowSizeClass.windowWidthSizeClass.isExpanded) {
-    // tablet / desktop-like layout
-}
 ```
 
 ### Density and inset helpers
@@ -137,27 +137,26 @@ fun PaddingValues.copy(
 
 ### Animation scale utilities
 
-Read the system animator duration scale so custom animations can react to developer options.
+These compatibility helpers read `Settings.Global.ANIMATOR_DURATION_SCALE`. Their names mention
+window animation scale, and the returned value is not observable, so both APIs are deprecated.
+Compose animation APIs already respect the system animator duration scale.
 
 ```kotlin
 import com.jet.utils.getWindowAnimationScale
 import com.jet.utils.windowAnimationScale
 
+@Deprecated("Prefer Compose animation APIs")
 val Context.windowAnimationScale: Float
 
 @Composable
+@Deprecated("Prefer Compose animation APIs")
 fun getWindowAnimationScale(): Float
-```
-
-Example:
-
-```kotlin
-val animationScale = getWindowAnimationScale()
 ```
 
 ### ColorInt luminance checks
 
-Luminance-based helpers for `@ColorInt Int` values.
+Luminance-based helpers for opaque `@ColorInt Int` values. The AndroidX luminance calculation uses
+the RGB channels and does not composite alpha against a background.
 
 ```kotlin
 import androidx.annotation.ColorInt
@@ -196,6 +195,7 @@ fun SafePaddingsPreview()
 fun MaterialColorSchemePreview()
 
 @Composable
+@Deprecated("A ColorScheme cannot reproduce its source tonal palettes")
 fun MaterialColorSchemeTonesPreview()
 
 @Composable
@@ -204,22 +204,23 @@ fun MaterialTypographyPreview()
 
 ### Configuration helpers
 
-Helpers on `android.content.res.Configuration` for screen size and pixel conversions.
+The legacy configuration pixel helpers remain available for compatibility. They can report the
+wrong dimensions in multi-window and resizable layouts, so new Compose code should use the actual
+window container size:
 
 ```kotlin
-import androidx.compose.ui.platform.LocalConfiguration
-import com.jet.utils.screenHeightPx
-import com.jet.utils.screenWidthPx
+import androidx.compose.ui.platform.LocalWindowInfo
 
-val configuration = LocalConfiguration.current
-val widthPx = configuration.screenWidthPx
-val heightPx = configuration.screenHeightPx
+val windowSizePx = LocalWindowInfo.current.containerSize
 ```
 
 Available helpers:
 
 ```kotlin
+@Deprecated("Use LocalWindowInfo.current.containerSize.width")
 val Configuration.screenWidthPx: Float
+
+@Deprecated("Use LocalWindowInfo.current.containerSize.height")
 val Configuration.screenHeightPx: Float
 ```
 
